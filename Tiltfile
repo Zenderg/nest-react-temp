@@ -29,16 +29,28 @@ docker_build(
     'backend',
     context='.',
     dockerfile='./deploy/backend.dockerfile',
-    only=['./backend'],
+    only=['./backend', './schema'],
+    ignore=[
+        './backend/node_modules',
+        './backend/dist',
+        './backend/test',
+        './backend/src/graphql.ts',
+        './backend/.env'
+    ],
     live_update=[
         sync('./backend', '/app'),
+        sync('./schema', '/schema'),
         run(
-            'cd app && pnpm install',
+            'pnpm install',
             trigger=['./backend/package.json', './backend/pnpm-lock.yaml']
         ),
         run(
-            'cd app && prisma generate',
+            'pnpx prisma generate',
             trigger=['./backend/schema.prisma']
+        ),
+        run(
+            'pnpm gql:gen',
+            trigger=['./schema']
         )
     ]
 )
@@ -52,6 +64,12 @@ docker_build(
     context='.',
     dockerfile='./deploy/web.dockerfile',
     only=['./client/web'],
+    ignore=[
+        './client/web/node_modules',
+        './client/web/dist',
+        './client/web/build',
+        './client/web/.react-router',
+    ],
     live_update=[
         fall_back_on('./client/web/vite.config.js'),
         sync('./client/web', '/app'),

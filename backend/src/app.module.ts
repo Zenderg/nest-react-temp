@@ -9,15 +9,15 @@ import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [
-    // GraphQLModule.forRoot<ApolloDriverConfig>({
-    //   driver: ApolloDriver,
-    //   playground: true,
-    //   typePaths: [join(process.cwd(), '../schema/**/*.graphql')],
-    //   definitions: {
-    //     path: join(process.cwd(), 'src/graphql.ts'),
-    //     outputAs: 'interface',
-    //   },
-    // }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      playground: true,
+      typePaths: [join(process.cwd(), '../schema/**/*.graphql')],
+      definitions: {
+        path: join(process.cwd(), 'src/graphql.ts'),
+        outputAs: 'interface',
+      },
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, UserService, PrismaService],

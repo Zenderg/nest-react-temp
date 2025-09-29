@@ -18,4 +18,6 @@ COPY --from=deps /app/node_modules /app/node_modules
 
 RUN cp .env.example .env
 
+COPY schema /schema
+
 CMD [ "pnpm", "run", "start:dev" ]
