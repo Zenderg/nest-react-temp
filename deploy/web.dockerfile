@@ -2,6 +2,7 @@ FROM node:22.20-slim AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+ENV API_ENDPOINT="http://backend:3000/graphql"
 
 RUN corepack enable
 

@@ -19,7 +19,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "migration:gen": "prisma migrate dev && prisma generate",
     "migration:reset": "prisma migrate reset",
-    "gql:gen": "ts-node generate-gql-typings"
+    "codegen": "ts-node generate-gql-typings"
   },
   "dependencies": {
     "@apollo/server": "^4.12.2",
