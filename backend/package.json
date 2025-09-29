@@ -80,6 +80,7 @@
     "onlyBuiltDependencies": [
       "@apollo/protobufjs",
       "@nestjs/core",
+      "@prisma/client",
       "@prisma/engines",
       "prisma",
       "unrs-resolver"
